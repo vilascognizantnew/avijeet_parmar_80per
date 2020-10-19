@@ -44,7 +44,40 @@ public class StockController {
 	}
 	
 	
-	
+	@GetMapping(value="/searchStockByName/{name}")
+	public ResponseEntity<?> searchStockById(@PathVariable("name") String name)
+	{
+		Stock s = stockService.searchStockByName(name);
+		if(s==null){
+			return new ResponseEntity<String>("not found", HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<Stock>(s,HttpStatus.OK);
+	}
 
+	@GetMapping(value="/searchStockByPrice/{startPrice}/{endPrice}")
+	public ResponseEntity<?> searchStockByPrice(@PathVariable("startPrice") Double startPrice, @PathVariable("endPrice") Double endPrice )
+	{
+		List<Stock> s = stockService.searchStockByPrice(startPrice,endPrice);
+		if(s.size()==0){
+			return new ResponseEntity<String>("not found", HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<Stock>>(s,HttpStatus.OK);
+	}
+	
+	@GetMapping(value="/searchStockByDate/{startDate}/{endDate}")
+	public ResponseEntity<?> searchStockById(@PathVariable("startDate") Date startDate, @PathVariable("endDate") Date endDate )
+	{
+		List<Stock> s = stockService.searchStockByDate(startDate,endDate);
+		if(s.size()==0){
+			return new ResponseEntity<String>("not found", HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<Stock>>(s,HttpStatus.OK);
+	}
+	
+	@GetMapping(value="/topFiveStocks")
+	public ResponseEntity<?> topFiveStocks()
+	{
+		return new ResponseEntity List<Stock>(stockService.topFiveStock(),HttpStatus.OK);
+	}
 }
 

@@ -1,5 +1,6 @@
 package com.cts.stock.dao;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
@@ -9,14 +10,15 @@ import com.cts.stock.model.Stock;
 @Repository
 public interface StockRepository extends CrudRepository<Stock, String>{
 
-	List<Stock> findTop5ByPrice(float price);
+	List<Stock> findTopFiveStocks(float price);
 
 	List<Stock> findByID(int id);
 
-	List<Stock> findByName(String name);
+	List<Stock> findByStockName(String name);
 
 	Iterable<Stock> findAll();
+	public List<Stock> findByPriceBetween(Double startPrice, Double endPrice);
 	
-	List<Stock> findByAgeBetween(Integer startAge, Integer endAge);
+	List<Stock> findByDateBetween(Date startDate, Date endDate);
 	
 }

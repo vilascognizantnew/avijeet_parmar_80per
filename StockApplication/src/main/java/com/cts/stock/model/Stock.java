@@ -9,7 +9,7 @@ public class Stock {
 	
 	@Id
 	private int id;
-	private int name;
+	private String name;
 	private float price;
 	private int volume;
 	private Date date;
@@ -19,10 +19,10 @@ public class Stock {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getName() {
+	public String getName() {
 		return name;
 	}
-	public void setName(int name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 	public float getPrice() {
@@ -43,7 +43,7 @@ public class Stock {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	public Stock(int id, int name, float price, int volume, Date date) {
+	public Stock(int id, String name, float price, int volume, Date date) {
 		super();
 		this.id = id;
 		this.name = name;
